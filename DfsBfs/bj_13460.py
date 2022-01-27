@@ -1,7 +1,7 @@
 '''
 문제: 백준 13460 구슬 탈출 2
 유형: bfs
-노트: -
+노트: 47라인 for문에서 조건 주의
 '''
 
 from collections import deque
