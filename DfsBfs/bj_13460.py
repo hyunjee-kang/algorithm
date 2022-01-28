@@ -1,11 +1,10 @@
 '''
 문제: 백준 13460 구슬 탈출 2
 유형: bfs
-노트: 47라인 for문에서 조건 주의
+노트: -
 '''
 
 from collections import deque
-import math
         
 def move(moveY, moveX, pos):
     y = pos[0]
@@ -39,7 +38,6 @@ def bfs():
     
     dq = deque()
     dq.append([red, blue, 1])
-    min_step = math.inf
     
     while len(dq) > 0:
         r, b, step = dq.popleft()
@@ -48,16 +46,13 @@ def bfs():
             r_next = move(dy[i], dx[i], r)
             b_next = move(dy[i], dx[i], b)
             if b_next == -1: continue
-            if r_next == -1: 
-                min_step = min(min_step, step)
-                continue
+            if r_next == -1: return step
             if r == r_next and b == b_next: continue
             r_next, b_next = relocation(r, b, r_next, b_next, dy[i], dx[i])
             if r != r_next or b != b_next: 
                 dq.append([r_next, b_next, step + 1])
     
-    if min_step != math.inf: return min_step
-    else: return -1
+    return -1
 
 '''main'''
 # input
