@@ -23,7 +23,7 @@ def getSumByRange(start, end):
 def initNode():
     # get base value
     global N, B
-    while (B <= N): B *= 2
+    while (B < N): B *= 2
 
     # set input values
     tree = [0 for _ in range(B)]
