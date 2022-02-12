@@ -1,7 +1,7 @@
 '''
 문제: 백준 11505 구간 곱 구하기
 유형: 자료구조, 세그먼트 트리, 인덱스 트리
-노트: init 함수 잘봐
+노트: update함수 잘봐
 '''
 import math
 from sys import stdin
@@ -25,10 +25,9 @@ def update(tree, arr, node, val, idx, start, end):
         tree[idx] = val
         return
     # 범위 내에 있을 경우 값 변경
-    tree[idx] = tree[idx] * val // arr[node] % div
-    if start != end: 
-        update(tree, arr, node, val, idx * 2, start, (start + end) // 2)
-        update(tree, arr, node, val, idx * 2 + 1, (start + end) // 2 + 1, end)
+    update(tree, arr, node, val, idx * 2, start, (start + end) // 2)
+    update(tree, arr, node, val, idx * 2 + 1, (start + end) // 2 + 1, end)
+    tree[idx] = tree[idx * 2] * tree[idx * 2 + 1] % div
     
 def initTree(tree, arr, idx, start, end):
     if start == end: 
@@ -61,6 +60,7 @@ for _ in range(m + k):
     order, a, b = map(int, input().split())
     if order == 1:
         update(tree, arr, a, b, 1, 1, n)
+        arr[a] = b
     elif order == 2:
         print(getMultiple(tree, 1, 1, n, a, b))
     
