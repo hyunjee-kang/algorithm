@@ -42,6 +42,7 @@ tree = init()
 for _ in range(m):
     order, x, y = map(int, input().split())
     if order == 0: 
+        if x > y: x, y = y, x
         print(getSum(tree, x, y, 1, 1, n))
     else:
         diff = y - numbers[x]
